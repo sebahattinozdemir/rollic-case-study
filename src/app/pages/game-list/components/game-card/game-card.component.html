@@ -1,0 +1,9 @@
+<div class="game-card">
+  <img src="{{ game.file }}" alt="game" style="width: 90%; padding: 5%" />
+  <div class="container">
+    <p><b>Game Name :</b> {{ game.gameName }}</p>
+    <p><b>Bundle :</b> {{ game.bundle }}</p>
+    <p><b>Owner :</b> {{ game.owner }}</p>
+    <button class="delete-btn" (click)="deleteGame()">Delete</button>
+  </div>
+</div>

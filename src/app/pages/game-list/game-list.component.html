@@ -1,0 +1,21 @@
+<div class="content" role="main">
+  <div class="container">
+    <b>Game List</b>
+
+    <div class="game-content">
+      <input
+        type="text"
+        placeholder="Search By Game Name"
+        (input)="searchOnGames($event)"
+      />
+      <a [routerLink]="['/new-games']"> new game </a>
+    </div>
+
+    <b class="no-data" *ngIf="gameService.games.length == 0">No Records</b>
+    <div class="cards">
+      <ng-container *ngFor="let item of games">
+        <app-game-card [game]="item"></app-game-card>
+      </ng-container>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,76 @@
+<div class="content">
+  <div class="container">
+    <form #contactForm="ngForm" (ngSubmit)="onSubmit(contactForm)">
+      <b>New Game</b>
+      <p>
+        <input
+          class="input-style"
+          placeholder="Game Name"
+          type="text"
+          name="gamename"
+          ngModel
+          required
+          #gamename="ngModel"
+        />
+        <span *ngIf="!gamename?.valid && (gamename?.dirty || gamename?.touched)"
+          >This field is required</span
+        >
+      </p>
+
+      <p>
+        <input
+          class="input-style"
+          placeholder="Bundle"
+          type="text"
+          name="bundle"
+          ngModel
+          required
+          pattern="^([A-Za-z]{1}[A-Za-z\d_]*\.)+[A-Za-z][A-Za-z\d_]*$"
+          #bundle="ngModel"
+        />
+
+        <span *ngIf="!bundle?.valid && (bundle?.dirty || bundle?.touched)">
+          <span *ngIf="bundle.errors.required">Bundle is required</span>
+          <span *ngIf="bundle.errors.pattern">Invalid Bundle Name</span>
+        </span>
+      </p>
+
+      <p>
+        <input
+          class="input-style"
+          placeholder="Owner"
+          type="text"
+          name="owner"
+          ngModel
+          required
+          email
+          #owner="ngModel"
+        />
+        <span *ngIf="!owner?.valid && (owner?.dirty || owner?.touched)">
+          <span *ngIf="owner.errors.required">Owner field is required</span>
+          <span *ngIf="owner.errors.email">Invalid Email For Owner</span>
+        </span>
+      </p>
+
+      <div style="display: flex; justify-content: space-between">
+        <p>
+          <input
+            #imageInput
+            type="file"
+            accept="image/*"
+            (change)="processFile(imageInput)"
+            name="file"
+            ngModel
+            required
+            #file="ngModel"
+          />
+          <span *ngIf="!owner?.valid && (owner?.dirty || owner?.touched)">
+            <span *ngIf="owner.errors.required">Image File required</span>
+          </span>
+        </p>
+
+        <button [disabled]="!contactForm.valid" type="submit">Save</button>
+      </div>
+    </form>
+  </div>
+</div>
